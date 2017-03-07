@@ -52,13 +52,13 @@ Once you have Bayonet's SDK configured, you can call the three APIs with the fol
         transaction_time: '1476012879',
         coupon: false,
         payment_gateway: 'stripe',
-        shipping_address : {
-            address_line_1 : 'example line 1',
-            address_line_2 : 'example line 2',
-            city : 'Mexico City',
-            state : 'Mexico DF',
-            country : 'MEX',
-            zip_code : '64000'
+        shipping_address: {
+            address_line_1: 'example line 1',
+            address_line_2: 'example line 2',
+            city: 'Mexico City',
+            state: 'Mexico DF',
+            country: 'MEX',
+            zip_code: '64000'
         }
     })
     ```
