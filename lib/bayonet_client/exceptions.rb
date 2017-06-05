@@ -4,7 +4,7 @@ module BayonetClient
 
   class BayonetError < Exception
     attr_accessor :request_body, :request_headers, :http_response_code, :http_response_json,
-                  :reason_code, :reason_message
+                  :reason_code, :reason_message, :status
 
     def initialize(request_body, request_headers,
                    http_response_code, http_response_json)
@@ -21,6 +21,9 @@ module BayonetClient
         self.reason_message = http_response_json['reason_message']
       else
         self.reason_message = http_response_json
+      end
+      if http_response_json.class == HTTParty::Response && http_response_json.key?('status')
+        self.status = http_response_json['status']
       end
     end
   end

@@ -30,6 +30,7 @@ describe BayonetClient do
     @params_feedback = keys_to_symbols load_fixture('params_feedback')
     @params_feedback_historical = keys_to_symbols load_fixture('params_feedback_historical')
     @params_chargeback_feedback = keys_to_symbols load_fixture('params_chargeback_feedback')
+    @params_get_fingerprint_data = keys_to_symbols load_fixture('params_get_fingerprint_data')
 
   end
 
@@ -131,6 +132,22 @@ describe BayonetClient do
     it 'should return success' do
       r = @client.feedback_historical(@params_feedback_historical)
       expect(r.reason_code).to eq('00')
+    end
+  end
+
+  describe 'GetFingerprintDataEndpoint' do
+    it 'should return error on invalid api key' do
+      expect{
+        @invalid_client.get_fingerprint_data(@params_get_fingerprint_data)
+      }.to raise_error(BayonetClient::BayonetError)
+    end
+
+    it 'should return error on invalid bayonet fingerprint token' do
+      begin
+        @invalid_client.get_fingerprint_data(@params_get_fingerprint_data)
+      rescue BayonetClient::BayonetError => e
+        expect(e.status).to eq('Error: Invalid value for bayonet_fingerprint_token')
+      end
     end
   end
 

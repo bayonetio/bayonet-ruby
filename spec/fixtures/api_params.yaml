@@ -68,3 +68,7 @@ params_feedback_historical: {
         zip_code: 111111
     }
 }
+
+params_get_fingerprint_data: {
+    bayonet_fingerprint_token: xxx
+}

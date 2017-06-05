@@ -40,6 +40,11 @@ module BayonetClient
       request('/feedback-historical', serialized)
     end
 
+    def get_fingerprint_data(params)
+      serialized = json_from_params(params)
+      request('/get-fingerprint-data', serialized)
+    end
+
     def validate_params(params)
       params.class == Hash
     end
@@ -55,7 +60,7 @@ module BayonetClient
     end
 
     def request_json_string(route, request_json_args)
-      fq_hostname = fully_qualified_api_host_name
+      fq_hostname = fully_qualified_api_host_name(route)
       url = "#{fq_hostname}#{route}"
 
       headers = {'User-Agent' => 'OfficialBayonetRubySDK',
@@ -71,8 +76,11 @@ module BayonetClient
       end
     end
 
-    def fully_qualified_api_host_name
+    def fully_qualified_api_host_name(route)
       default_domain = 'api.bayonet.io'
+      if route == '/get-fingerprint-data'
+        default_domain = 'fingerprinting.bayonet.io'
+      end
       api_version_namespace = 'v' + @version
       "https://#{default_domain}/#{api_version_namespace}"
     end
