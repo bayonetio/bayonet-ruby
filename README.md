@@ -103,6 +103,13 @@ Once you have Bayonet's SDK configured, you can call the three APIs with the fol
         }
     })
     ```
+  * Get-fingerprint-data API
+  
+    ```ruby
+    client.get_fingerprint_data({
+        bayonet_fingerprint_token: 'fingerprint-token-generated-by-JS-snipppet'
+    })
+    ``` 
  
 ## Error handling
 Bayonet's SDK raises exceptions both when setting up the client object and executing functions:
