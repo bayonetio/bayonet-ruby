@@ -4,6 +4,7 @@ require_relative './bayonet_client/response.rb'
 require_relative './bayonet_client/exceptions.rb'
 require_relative './bayonet_client/ecommerce.rb'
 require_relative './bayonet_client/lending.rb'
+require_relative './bayonet_client/device_fingerprint.rb'
 
 module BayonetClient
 

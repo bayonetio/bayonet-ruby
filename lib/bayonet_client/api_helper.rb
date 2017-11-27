@@ -18,7 +18,6 @@ module BayonetClient
         raise BayonetClient::BayonetError.new(params, '', '', 'Invalid params. Please make sure you pass a params hash')
       end
       json_params = json_from_params(params)
-      puts json_params
       request_json_string(route, json_params)
     end
 
@@ -40,7 +39,7 @@ module BayonetClient
     end
 
     def self.fully_qualified_api_host_name(route)
-      default_domain = 'staging-api.bayonet.io'
+      default_domain = 'api.bayonet.io'
       if route == '/get-fingerprint-data'
         default_domain = 'fingerprinting.bayonet.io'
       end
