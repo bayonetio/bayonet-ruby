@@ -29,10 +29,10 @@ To use this SDK, please make sure:
     ```ruby
     require 'bayonet_client'
     ```
-  * Create config options, with parameters (api_key, api_version).
+  * Set up your configuration, with parameters (api_key, api_version).
 
     ```ruby
-    client = BayonetClient::Client.new(api_key, api_version)
+    BayonetClient.configure(api_key, api_version)
     ```
     
 ## Usage
@@ -40,7 +40,7 @@ Once you have Bayonet's SDK configured, you can call the three APIs with the fol
   * Consulting API
   
     ```ruby
-    client.consulting({
+    BayonetClient::Ecommerce.consulting({
         channel: 'mpos',
         email: 'example@bayonet.io',
         consumer_name: 'Example name',
@@ -65,7 +65,7 @@ Once you have Bayonet's SDK configured, you can call the three APIs with the fol
   * Feedback API
   
     ```ruby
-    client.feedback({
+    BayonetClient::Ecommerce.feedback({
         transaction_status: 'success',
         transaction_id: 'uhffytd65rds56yt',
         ...
@@ -74,7 +74,7 @@ Once you have Bayonet's SDK configured, you can call the three APIs with the fol
   * Feedback-historical API
   
     ```ruby
-    client.feedback_historical({
+    BayonetClient::Ecommerce.feedback_historical({
         channel: 'mpos',
         type: 'transaction',
         email: 'example@bayonet.io',
@@ -106,7 +106,7 @@ Once you have Bayonet's SDK configured, you can call the three APIs with the fol
   * Get-fingerprint-data API
   
     ```ruby
-    client.get_fingerprint_data({
+    BayonetClient::DeviceFingerprint.get_fingerprint_data({
         bayonet_fingerprint_token: 'fingerprint-token-generated-by-JS-snipppet'
     })
     ``` 
@@ -115,7 +115,7 @@ Once you have Bayonet's SDK configured, you can call the three APIs with the fol
 Bayonet's SDK raises exceptions both when setting up the client object and executing functions:
 ```ruby
 begin
-    client = bayonet.BayonetClient(api_key, api_version)
+    BayonetClient.configure(api_key, api_version)
 rescue BayonetClient::InvalidClientSetupError => e
     puts e.message
 end
@@ -123,7 +123,7 @@ end
 
 ```ruby
 begin
-    client.consulting(params)   # Or, client.feedback(params) Or, client.feedback_historical(params)
+    BayonetClient::Ecommerce.consulting(params)
 rescue BayonetClient::BayonetError => e
   puts e.reason_code
   puts e.reason_message
