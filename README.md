@@ -1,4 +1,4 @@
-## Bayonet [![Build Status](https://travis-ci.org/Bayonet-Client/bayonet-ruby.svg?branch=master)](https://travis-ci.org/Bayonet-Client/bayonet-ruby)
+## Bayonet [![Build Status](https://travis-ci.org/bayonetio/bayonet-ruby.svg?branch=master)](https://travis-ci.org/bayonetio/bayonet-ruby)
 Bayonet enables companies to feed and consult a global database about online consumers’ reputation, based on historic payments. Start making smarter business decisions today.
 
 ### Introduction
