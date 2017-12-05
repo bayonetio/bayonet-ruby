@@ -6,10 +6,14 @@ module BayonetClient
       params.class == Hash
     end
 
-    def self.json_from_params(params)
+    def self.json_from_params(params, route)
       # Add api_key to params
-      params[:auth] = {}
-      params[:auth][:api_key] = BayonetClient.api_key
+      if route == '/get-fingerprint-data'
+        params[:api_key] = BayonetClient.api_key
+      else
+        params[:auth] = {}
+        params[:auth][:api_key] = BayonetClient.api_key
+      end
       params.to_json
     end
 
@@ -17,7 +21,7 @@ module BayonetClient
       unless validate_params(params)
         raise BayonetClient::BayonetError.new(params, '', '', 'Invalid params. Please make sure you pass a params hash')
       end
-      json_params = json_from_params(params)
+      json_params = json_from_params(params, route)
       request_json_string(route, json_params)
     end
 
@@ -40,10 +44,13 @@ module BayonetClient
 
     def self.fully_qualified_api_host_name(route)
       default_domain = 'api.bayonet.io'
+      api_version_namespace = 'v' + BayonetClient.version
       if route == '/get-fingerprint-data'
         default_domain = 'fingerprinting.bayonet.io'
+        if BayonetClient.version == '2'
+          api_version_namespace = 'v1'
+        end
       end
-      api_version_namespace = 'v' + BayonetClient.version
       "https://#{default_domain}/#{api_version_namespace}"
     end
   end
