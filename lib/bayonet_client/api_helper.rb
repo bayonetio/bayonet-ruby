@@ -43,7 +43,7 @@ module BayonetClient
     end
 
     def self.fully_qualified_api_host_name(route)
-      default_domain = 'api.bayonet.io'
+      default_domain = 'staging-api.bayonet.io'
       api_version_namespace = 'v' + BayonetClient.version
       if route == '/get-fingerprint-data'
         default_domain = 'fingerprinting.bayonet.io'
