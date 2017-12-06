@@ -272,7 +272,7 @@ Once you have Bayonet's SDK configured, you can call the APIs with the following
   
     ```ruby
     BayonetClient::DeviceFingerprint.get_fingerprint_data({
-        bayonet_fingerprint_token: 'fingerprint-token-generated-by-JS-snipppet'
+        bayonet_fingerprint_token: '<fingerprint-token-generated-by-JS-snippet>'
     })
     ``` 
  
