@@ -11,15 +11,15 @@ module BayonetClient
   def self.configure(api_key, version)
     if version.nil? || version.empty?
       message = 'Please specify Api version'
-      raise BayonetClient::InvalidClientSetupError.new message
+      raise BayonetClient::BayonetError.new(nil, nil, nil, nil, -1, message)
     end
     if api_key.nil? || api_key.empty?
       message = 'Please specify Api key'
-      raise BayonetClient::InvalidClientSetupError.new message
+      raise BayonetClient::BayonetError.new(nil, nil, nil, nil, -1, message)
     end
     unless BayonetClient::SUPPORTED_API_VERSIONS.include?(version)
       message = 'This library does not support the version specified. Please consider updating your dependencies'
-      raise BayonetClient::InvalidClientSetupError.new message
+      raise BayonetClient::BayonetError.new(nil, nil, nil, nil, -1, message)
     end
 
     @api_key = api_key
