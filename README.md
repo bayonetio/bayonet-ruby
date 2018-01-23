@@ -40,7 +40,11 @@ To use this SDK, please make sure:
     ```
     
 ## Usage
-Once you have Bayonet's SDK configured, you can call the APIs with the following syntax (depending on whether you  are integrating for the Ecommerce product or the Lending product):
+Once you have Bayonet's SDK configured, you can call the APIs with the following syntax.Follow the guidelines specific to the product you are integrating:
+
+* [Ecommerce](#ecommerce)
+
+* [Lending](#lending)
 
 ### Ecommerce
 
