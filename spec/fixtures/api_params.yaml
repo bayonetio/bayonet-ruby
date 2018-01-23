@@ -2,9 +2,9 @@ invalid_api_key: invalid-api-key
 
 params_consulting: {
     email: test_ruby@bayonet.io,
-    consumer_name: test_ruby_consumer_name,
+    consumer_name: test ruby consumer name,
     consumer_internal_id: test_ruby_1,
-    cardholder_name: test_ruby_cardholder_name,
+    cardholder_name: test ruby cardholder name,
     telephone: 9999999999,
     card_number: 4111111111111111,
     transaction_amount: 500.00,
@@ -49,9 +49,9 @@ params_feedback: {
 
 params_feedback_historical: {
     email: test_ruby@bayonet.io,
-    consumer_name: test_ruby_consumer_name,
+    consumer_name: test ruby consumer name,
     consumer_internal_id: test_ruby_1,
-    cardholder_name: test_ruby_cardholder_name,
+    cardholder_name: test ruby cardholder name,
     telephone: 9999999999,
     card_number: 4111111111111111,
     transaction_amount: 500.00,
