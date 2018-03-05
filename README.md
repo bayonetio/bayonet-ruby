@@ -78,7 +78,7 @@ Once you have Bayonet's SDK configured, you can call the APIs with the following
             zip_code: '64000'
         },
         payment_method: 'card',
-        transaction_id: '<your internal ID for this transaction>'
+        transaction_id: '<your internal ID for this transaction>',
         payment_gateway: 'stripe',
         coupon: 'discount_buen_fin',
         expedited_shipping: true,
