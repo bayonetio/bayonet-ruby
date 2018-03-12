@@ -78,7 +78,8 @@ Once you have Bayonet's SDK configured, you can call the APIs with the following
             zip_code: '64000'
         },
         payment_method: 'card',
-        transaction_id: '<your internal ID for this transaction>',
+        order_id: '<your internal ID for this order (mandatory)>',
+        transaction_id: '<your internal ID for this transaction (optional)>',
         payment_gateway: 'stripe',
         coupon: 'discount_buen_fin',
         expedited_shipping: true,
@@ -103,10 +104,13 @@ Once you have Bayonet's SDK configured, you can call the APIs with the following
   
     ```ruby
     BayonetClient::Ecommerce.update-transaction({
+        order_id: '<your internal ID for this order (as sent in the consult step)>',
         transaction_id: '<your internal ID for this transaction (as sent in the consult step)>',
+        bayonet_tracking_id: '<tracking ID returned by the API in the consult step>',
         transaction_status: 'success',
         ...
     })
+    # please note that you can use either one of 'order_id', 'transaction_id', or 'bayonet_tracking_id' to update the status of a transaction
     ```
 * Feedback-historical API
   

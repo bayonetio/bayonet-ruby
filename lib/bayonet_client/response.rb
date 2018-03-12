@@ -4,7 +4,7 @@ module BayonetClient
 
   class BayonetResponse
     attr_accessor :rules_triggered,
-                  :decision, :payload, :reason_code,
+                  :decision, :bayonet_tracking_id, :payload, :reason_code,
                   :reason_message, :request_body, :bayonet_fingerprint,
                   :raw
 
@@ -15,6 +15,9 @@ module BayonetClient
       end
       if parsed_response.key?('decision')
         self.decision = parsed_response['decision']
+      end
+      if parsed_response.key?('bayonet_tracking_id')
+        self.bayonet_tracking_id = parsed_response['bayonet_tracking_id']
       end
       if parsed_response.key?('payload')
         self.payload = parsed_response['payload']

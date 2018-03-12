@@ -27,6 +27,7 @@ params_consult: {
     },
     payment_method: card,
     transaction_time: 1476813671,
+    order_id: test_ruby_123,
     transaction_id: test_ruby_123,
     payment_gateway: stripe,
     channel: ecommerce,
