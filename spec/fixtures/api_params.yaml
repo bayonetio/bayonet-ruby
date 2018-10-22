@@ -87,7 +87,7 @@ params_feedback_historical: {
             product_category: test
         }
     ],
-    transaction_id: test_ruby_2,
+    order_id: test_ruby_2,
     transaction_status: success
 }
 

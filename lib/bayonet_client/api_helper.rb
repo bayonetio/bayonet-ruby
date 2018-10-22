@@ -30,10 +30,15 @@ module BayonetClient
       url = "#{fq_hostname}#{route}"
 
       headers = {'User-Agent' => 'OfficialBayonetRubySDK',
-                 'Content-Type' => 'application/json', 'Accept' => 'application/json'}
+                 'Content-Type' => 'application/json',
+                 'Accept' => 'application/json'}
 
-      raw_resp = HTTParty.post(
-          url, body: request_json_args, headers: headers, verify: false)
+      begin
+        raw_resp = HTTParty.post(
+            url, body: request_json_args, headers: headers, verify: false, timeout: BayonetClient.timeout)
+      rescue Net::ReadTimeout => e
+        raise BayonetClient::BayonetError.new(request_json_args, headers, nil, nil, -1, 'Request timed out. If you explicitly set a timeout, consider raising the timeout value')
+      end
 
       if raw_resp.code == 200
         BayonetClient::BayonetResponse.new(raw_resp)
