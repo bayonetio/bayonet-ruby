@@ -7,14 +7,19 @@ require_relative './bayonet_client/lending.rb'
 require_relative './bayonet_client/device_fingerprint.rb'
 
 module BayonetClient
+  DEFAULT_HTTP_TIMEOUT = 10
 
-  def self.configure(api_key, version)
+  def self.configure(api_key, version, timeout = DEFAULT_HTTP_TIMEOUT)
     if version.nil? || version.empty?
       message = 'Please specify Api version'
       raise BayonetClient::BayonetError.new(nil, nil, nil, nil, -1, message)
     end
     if api_key.nil? || api_key.empty?
       message = 'Please specify Api key'
+      raise BayonetClient::BayonetError.new(nil, nil, nil, nil, -1, message)
+    end
+    unless timeout.is_a? Numeric
+      message = 'Please specify a valid timeout value'
       raise BayonetClient::BayonetError.new(nil, nil, nil, nil, -1, message)
     end
     unless BayonetClient::SUPPORTED_API_VERSIONS.include?(version)
@@ -24,11 +29,13 @@ module BayonetClient
 
     @api_key = api_key
     @version = version
+    @timeout = timeout
   end
 
   class << self
     attr_reader :api_key
     attr_reader :version
+    attr_reader :timeout
   end
 
 end

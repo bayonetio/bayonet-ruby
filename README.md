@@ -38,9 +38,13 @@ To use this SDK, please make sure:
     ```ruby
     BayonetClient.configure(api_key, api_version)
     ```
+    You can also set a timeout value (in seconds):
+    ```ruby
+    BayonetClient.configure(api_key, api_version, timeout)
+    ```
     
 ## Usage
-Once you have Bayonet's SDK configured, you can call the APIs with the following syntax.Follow the guidelines specific to the product you are integrating:
+Once you have Bayonet's SDK configured, you can call the APIs with the following syntax. Follow the guidelines specific to the product you are integrating:
 
 * [Ecommerce](#ecommerce)
 
@@ -78,7 +82,7 @@ Once you have Bayonet's SDK configured, you can call the APIs with the following
             zip_code: '64000'
         },
         payment_method: 'card',
-        transaction_id: '<your internal ID for this transaction>'
+        transaction_id: '<your internal ID for this transaction>',
         payment_gateway: 'stripe',
         coupon: 'discount_buen_fin',
         expedited_shipping: true,
@@ -292,7 +296,7 @@ rescue BayonetClient::BayonetError => e
 end
 
 begin
-    BayonetClient::Ecommerce.consulting(params)
+    BayonetClient::Ecommerce.consult(params)
 rescue BayonetClient::BayonetError => e
   puts e.reason_code
   puts e.reason_message
