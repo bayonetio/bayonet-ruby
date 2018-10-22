@@ -87,16 +87,6 @@ describe BayonetClient do
       end
     end
 
-    it 'should return error on invalid transaction id' do
-      # generate a random transaction id
-      invalid_transaction_id = (0...8).map { (65 + rand(26)).chr }.join
-      @params_update_transaction[:transaction_id] = invalid_transaction_id
-      BayonetClient.configure(@api_key, @api_version)
-      expect{
-        BayonetClient::Ecommerce.update_transaction(@params_update_transaction)
-      }.to raise_error(BayonetClient::BayonetError)
-    end
-
     it 'should return success' do
       @params_update_transaction[:transaction_id] = @transaction_id
       BayonetClient.configure(@api_key, @api_version)
@@ -124,31 +114,31 @@ describe BayonetClient do
     end
 
     it 'should return success' do
-      # generate a random transaction id
-      transaction_id = (0...8).map { (65 + rand(26)).chr }.join
-      @params_feedback_historical[:transaction_id] = transaction_id
+      # generate a random order id
+      order_id = (0...8).map { (65 + rand(26)).chr }.join
+      @params_feedback_historical[:order_id] = order_id
       BayonetClient.configure(@api_key, @api_version)
       r = BayonetClient::Ecommerce.feedback_historical(@params_feedback_historical)
       expect(r.reason_code).to eq(0)
     end
   end
 
-  describe 'GetFingerprintDataEndpoint' do
-    it 'should return error on invalid api key' do
-      BayonetClient.configure(@invalid_api_key, @api_version)
-      expect{
-        BayonetClient::DeviceFingerprint.get_fingerprint_data(@params_get_fingerprint_data)
-      }.to raise_error(BayonetClient::BayonetError)
-    end
-
-    it 'should return error on invalid bayonet fingerprint token' do
-      begin
-        BayonetClient.configure(@api_key, @api_version)
-        BayonetClient::DeviceFingerprint.get_fingerprint_data(@params_get_fingerprint_data)
-      rescue BayonetClient::BayonetError => e
-        expect(e.reason_message).to eq('Error: Invalid value for bayonet_fingerprint_token')
-      end
-    end
-  end
+  # describe 'GetFingerprintDataEndpoint' do
+  #   it 'should return error on invalid api key' do
+  #     BayonetClient.configure(@invalid_api_key, @api_version)
+  #     expect{
+  #       BayonetClient::DeviceFingerprint.get_fingerprint_data(@params_get_fingerprint_data)
+  #     }.to raise_error(BayonetClient::BayonetError)
+  #   end
+  #
+  #   it 'should return error on invalid bayonet fingerprint token' do
+  #     begin
+  #       BayonetClient.configure(@api_key, @api_version)
+  #       BayonetClient::DeviceFingerprint.get_fingerprint_data(@params_get_fingerprint_data)
+  #     rescue BayonetClient::BayonetError => e
+  #       expect(e.reason_message).to eq('Error: Invalid value for bayonet_fingerprint_token')
+  #     end
+  #   end
+  # end
 
 end
